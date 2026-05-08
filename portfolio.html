@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --c1:#FF6B6B;--c2:#FFD93D;--c3:#6BCB77;--c4:#4D96FF;--c5:#C77DFF;--c6:#FF9F43;
+  --bg:#0D0D14;--bg2:#14141F;--bg3:#1C1C2E;
+  --text:#F0EEF8;--muted:#9190A8;--border:rgba(255,255,255,0.08);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem;background:rgba(13,13,20,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem}
+.nav-logo span{color:var(--c4)}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{color:var(--muted);font-size:0.85rem;letter-spacing:0.04em;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+
+.hero{position:relative;padding:6rem 2.5rem 4rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 55% 45% at 85% 15%,rgba(77,150,255,0.13) 0%,transparent 60%),
+             radial-gradient(ellipse 40% 40% at 10% 75%,rgba(199,125,255,0.1) 0%,transparent 55%),
+             radial-gradient(ellipse 30% 30% at 55% 85%,rgba(107,203,119,0.09) 0%,transparent 50%)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(107,203,119,0.1);border:1px solid rgba(107,203,119,0.3);color:var(--c3);font-size:0.78rem;letter-spacing:0.08em;padding:5px 14px;border-radius:100px;margin-bottom:1.5rem}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--c3);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.75)}}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:1.06;max-width:700px;margin-bottom:0.5rem}
+.hero-degree{font-size:0.95rem;color:var(--muted);letter-spacing:0.06em;margin-bottom:1.25rem}
+.hero-degree span{color:var(--c5);font-weight:500}
+.hero-sub{max-width:540px;color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:2.5rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{padding:0.7rem 1.6rem;border-radius:100px;background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;font-weight:500;font-size:0.9rem;border:none;cursor:pointer;transition:transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(77,150,255,0.28)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(77,150,255,0.42)}
+.btn-ghost{padding:0.7rem 1.6rem;border-radius:100px;background:transparent;color:var(--text);border:1px solid var(--border);font-size:0.9rem;cursor:pointer;transition:border-color 0.2s,background 0.2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.28);background:rgba(255,255,255,0.04)}
+
+.stats{display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stat{flex:1;padding:1.4rem 1rem;text-align:center;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem}
+.stat-label{font-size:0.75rem;color:var(--muted);letter-spacing:0.05em;margin-top:3px}
+
+section{padding:4.5rem 2.5rem}
+.section-kicker{font-size:0.72rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.5rem}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.7rem,2.8vw,2.4rem);margin-bottom:2.5rem}
+
+.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:3rem;align-items:start}
+.about-text{color:var(--muted);font-size:1rem;line-height:1.85}
+.about-text p+p{margin-top:1rem}
+.about-text strong{color:var(--text);font-weight:500}
+.about-cards{display:flex;flex-direction:column;gap:0.9rem}
+.about-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.4rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.2s}
+.about-card:hover{border-color:rgba(255,255,255,0.18)}
+.about-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.about-card-title{font-weight:500;font-size:0.92rem}
+.about-card-sub{font-size:0.8rem;color:var(--muted);margin-top:2px}
+
+.resume-card{background:var(--bg2);border:1px solid rgba(77,150,255,0.3);border-radius:14px;padding:1.1rem 1.4rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.2s,background 0.2s;position:relative;overflow:hidden}
+.resume-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c4),var(--c5))}
+.resume-card:hover{border-color:rgba(77,150,255,0.5);background:rgba(77,150,255,0.04)}
+.resume-actions{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.resume-btn{font-size:0.72rem;padding:3px 10px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:4px}
+.resume-btn:hover{border-color:var(--c4);color:var(--c4);background:rgba(77,150,255,0.08)}
+.resume-btn.dl:hover{border-color:var(--c3);color:var(--c3);background:rgba(107,203,119,0.08)}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem}
+.project-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:1.6rem;position:relative;overflow:hidden;transition:transform 0.2s,border-color 0.2s}
+.project-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.18)}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.c-blue::before{background:linear-gradient(90deg,var(--c4),var(--c5))}
+.c-green::before{background:linear-gradient(90deg,var(--c3),var(--c2))}
+.c-red::before{background:linear-gradient(90deg,var(--c1),var(--c6))}
+.c-orange::before{background:linear-gradient(90deg,var(--c6),var(--c2))}
+.project-emoji{font-size:1.9rem;margin-bottom:0.9rem}
+.project-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:0.45rem}
+.project-desc{color:var(--muted);font-size:0.86rem;line-height:1.65;margin-bottom:1.1rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:0.68rem;padding:3px 9px;border-radius:100px;border:1px solid var(--border);color:var(--muted);letter-spacing:0.03em}
+
+.pub-list{display:flex;flex-direction:column;gap:1.2rem}
+.pub-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.5rem 1.75rem;position:relative;overflow:hidden;transition:border-color 0.2s,transform 0.2s}
+.pub-card:hover{border-color:rgba(255,255,255,0.18);transform:translateX(4px)}
+.pub-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px}
+.pub-card:nth-child(1)::before{background:linear-gradient(180deg,var(--c4),var(--c5))}
+.pub-card:nth-child(2)::before{background:linear-gradient(180deg,var(--c3),var(--c2))}
+.pub-meta{display:flex;align-items:center;gap:10px;margin-bottom:0.6rem;flex-wrap:wrap}
+.pub-badge{font-size:0.68rem;padding:3px 10px;border-radius:100px;font-weight:500;letter-spacing:0.04em}
+.pub-year{font-size:0.75rem;color:var(--muted)}
+.pub-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.4rem;line-height:1.4}
+.pub-journal{font-size:0.84rem;color:var(--muted);font-style:italic;margin-bottom:0.8rem}
+.pub-authors{font-size:0.8rem;color:var(--muted)}
+.pub-authors strong{color:var(--text);font-weight:500}
+
+.skills-outer{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem}
+.skill-cat{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.2rem 1.4rem}
+.skill-cat-title{font-size:0.71rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;margin-bottom:0.9rem}
+.skill-list{display:flex;flex-direction:column;gap:9px}
+.skill-item{display:flex;justify-content:space-between;align-items:center}
+.skill-name{font-size:0.86rem}
+.skill-bar-track{width:78px;height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.skill-bar-fill{height:100%;border-radius:2px}
+
+.contact-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:3rem;max-width:620px;margin:0 auto;text-align:center;position:relative;overflow:hidden}
+.contact-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 50% 0%,rgba(77,150,255,0.09) 0%,transparent 70%)}
+.contact-badge{display:inline-block;margin-bottom:1.4rem;background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.3);color:var(--c1);font-size:0.76rem;letter-spacing:0.08em;padding:5px 14px;border-radius:100px}
+.contact-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.9rem;margin-bottom:0.9rem}
+.contact-sub{color:var(--muted);max-width:400px;margin:0 auto 2rem;font-size:0.93rem;line-height:1.7}
+.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:0.9rem}
+.contact-link{display:flex;align-items:center;gap:8px;padding:0.6rem 1.2rem;border-radius:100px;border:1px solid var(--border);background:var(--bg3);color:var(--text);font-size:0.86rem;transition:border-color 0.2s,background 0.2s}
+.contact-link:hover{border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.05)}
+
+footer{padding:1.4rem 2.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;color:var(--muted);font-size:0.8rem}
+
+.modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.85);align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--bg2);border:1px solid var(--border);border-radius:20px;width:90%;max-width:700px;max-height:85vh;overflow:hidden;display:flex;flex-direction:column}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--border)}
+.modal-header h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem}
+.modal-close{background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;padding:2px 6px;border-radius:6px;transition:color 0.2s,background 0.2s}
+.modal-close:hover{color:var(--text);background:rgba(255,255,255,0.06)}
+.modal-body{padding:1.5rem;overflow-y:auto;flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+.modal-placeholder{text-align:center;color:var(--muted)}
+.modal-placeholder .big-icon{font-size:3rem;margin-bottom:1rem}
+.modal-placeholder p{font-size:0.9rem;line-height:1.7}
+.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:0.75rem}
+.modal-dl-btn{padding:0.55rem 1.25rem;border-radius:100px;background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;font-size:0.85rem;font-weight:500;border:none;cursor:pointer;transition:opacity 0.2s}
+.modal-dl-btn:hover{opacity:0.85}
+
+@media(max-width:680px){
+  nav{padding:1rem 1.25rem}.nav-links{gap:1rem}
+  .hero{padding:3.5rem 1.25rem 2.5rem}
+  section{padding:3rem 1.25rem}
+  .about-grid{grid-template-columns:1fr}
+  .stats{flex-wrap:wrap}
+  .stat{flex:0 0 50%;border-right:none;border-bottom:1px solid var(--border)}
+}
+</style>
+</head>
+<body>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="resumeModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>📄 Resume Preview</h3>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <div class="modal-placeholder">
+        <div class="big-icon">📂</div>
+        <p>No resume uploaded yet.<br>Use the <strong style="color:var(--text)">Upload Resume</strong> button<br>to load your PDF here.</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-dl-btn" id="modalDlBtn" style="display:none" onclick="downloadResume()">⬇ Download</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Papers</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-badge"><span class="dot"></span> Fresher · Open to opportunities</div>
+  <h1>Praveen C</h1>
+  <p class="hero-degree">B.Tech · <span>Artificial Intelligence & Machine Learning</span></p>
+  <p class="hero-sub">A tech enthusiast with a strong ability to quickly grasp new concepts and adapt to evolving challenges. I excel at collaborating effectively, staying focused, and continuously developing my skills in AI and ML.</p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">View my projects</a>
+    <a href="#contact" class="btn-ghost">Get in touch</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num" style="color:var(--c4)">4</div><div class="stat-label">AI/ML Projects</div></div>
+  <div class="stat"><div class="stat-num" style="color:var(--c5)">2</div><div class="stat-label">Publications</div></div>
+  <div class="stat"><div class="stat-num" style="color:var(--c3)">8+</div><div class="stat-label">Tools & Libraries</div></div>
+  <div class="stat"><div class="stat-num" style="color:var(--c2)">100%</div><div class="stat-label">Dedication</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-kicker">Who I am</div>
+  <h2 class="section-title">About me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Hi! I'm a <strong>B.Tech graduate in Artificial Intelligence & Machine Learning</strong>, passionate about building intelligent systems that solve real-world problems.</p>
+      <p>As a fresher, I bring a <strong>fresh perspective, strong foundations in ML, NLP, and Python</strong>, and the drive to grow fast. I adapt quickly to new challenges and always deliver my best — whether working solo or in a team.</p>
+      <p>I'm <strong>open to constructive feedback</strong> and committed to continuous learning. My goal is to contribute meaningfully from day one while building expertise across data science, computer vision, and AI-powered applications.</p>
+    </div>
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="about-icon" style="background:rgba(199,125,255,0.12)">🎓</div>
+        <div>
+          <div class="about-card-title">B.Tech — Artificial Intelligence & Machine Learning</div>
+          <div class="about-card-sub">Fresher · B.tech 2026</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-icon" style="background:rgba(77,150,255,0.12)">🤖</div>
+        <div>
+          <div class="about-card-title">Focus Areas</div>
+          <div class="about-card-sub">Machine Learning · Data Analyst · NLP</div>
+        </div>
+      </div>
+      
+      <!-- RESUME CARD -->
+      <div class="resume-card">
+        <div class="about-icon" style="background:rgba(77,150,255,0.12)">📄</div>
+        <div style="flex:1">
+          <div class="about-card-title">Resume</div>
+          <div class="resume-actions">
+          <button class="resume-btn" onclick="window.open('https://drive.google.com/file/d/1oHdbBJElh-fdGk8TH4r61X1IGb7K-8X4/view?usp=drivesdk', '_blank')">👁 View</button>
+          <a href="https://drive.google.com/file/d/1oHdbBJElh-fdGk8TH4r61X1IGb7K-8X4/view?usp=drivesdk" download class="resume-btn dl">⬇ Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--bg2)">
+  <div class="section-kicker">What I've built</div>
+  <h2 class="section-title">Featured projects</h2>
+  <div class="projects-grid">
+    <div class="project-card c-blue">
+      <div class="project-emoji">💰</div>
+      <div class="project-title">AI Personal Finance Assistant</div>
+      <div class="project-desc">End-to-end AI system integrating NLP, OCR, and Machine Learning for automated expense tracking and financial insights, with real-time responses for smart money management.</div>
+      <div class="project-tags"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">OCR</span><span class="tag">Machine Learning</span><span class="tag">Pandas</span></div>
+    </div>
+    <div class="project-card c-green">
+      <div class="project-emoji">🏥</div>
+      <div class="project-title">AI Health Diagnosis System</div>
+      <div class="project-desc">Predicts possible diseases from user-entered symptoms using ML and Deep Learning. Provides disease predictions, medication suggestions, diet plans, and precautionary measures.</div>
+      <div class="project-tags"><span class="tag">Python</span><span class="tag">Deep Learning</span><span class="tag">ML</span><span class="tag">NLP</span><span class="tag">Healthcare AI</span></div>
+    </div>
+    <div class="project-card c-red">
+      <div class="project-emoji">💬</div>
+      <div class="project-title">YouTube Comment Analysis (NLP)</div>
+      <div class="project-desc">End-to-end NLP pipeline for YouTube comment analysis featuring sentiment analysis, text-to-speech, semantic Q&A, and knowledge graph generation via YouTube API.</div>
+      <div class="project-tags"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">Sentiment Analysis</span><span class="tag">Knowledge Graph</span><span class="tag">YouTube API</span></div>
+    </div>
+    <div class="project-card c-orange">
+      <div class="project-emoji">🍎</div>
+      <div class="project-title">Fruit Freshness Detection</div>
+      <div class="project-desc">ML model detecting fruit freshness from image features using a trained classifier that distinguishes fresh from spoiled fruits — aiding quality control and supply chain efficiency.</div>
+      <div class="project-tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">OpenCV</span><span class="tag">Computer Vision</span><span class="tag">Image Classification</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-kicker">Research & writing</div>
+  <h2 class="section-title">Publications</h2>
+  <div class="pub-list">
+    <div class="pub-card">
+      <div class="pub-meta">
+        <span class="pub-badge" style="background:rgba(77,150,255,0.12);color:var(--c4);border:1px solid rgba(77,150,255,0.25)">📘 Paper 1</span>
+        <span class="pub-year">2026</span>
+      </div>
+      <div class="pub-title"> AI-Driven Personal Finance Assistant with Voice, OCR, and Chatbot</div>
+      <div class="pub-journal">IJERT, Volume 15 , Issue 04 , April - 2026</div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-meta">
+        <span class="pub-badge" style="background:rgba(107,203,119,0.12);color:var(--c3);border:1px solid rgba(107,203,119,0.25)">📗 Paper 2</span>
+        <span class="pub-year">2026</span>
+      </div>
+      <div class="pub-title">AI – HEALTH DIAGNOSIS SYSTEM</div>
+      <div class="pub-journal">ICC-CNS</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--bg2)">
+  <div class="section-kicker">What I work with</div>
+  <h2 class="section-title">Skills & tools</h2>
+  <div class="skills-outer">
+    <div class="skill-cat">
+      <div class="skill-cat-title" style="color:var(--c4)">Programming</div>
+      <div class="skill-list">
+        <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%;background:var(--c4)"></div></div></div>
+        <div class="skill-item"><span class="skill-name">HTML & CSS</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:74%;background:var(--c4)"></div></div></div>
+        <div class="skill-item"><span class="skill-name">MySQL</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%;background:var(--c4)"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title" style="color:var(--c5)">ML / AI</div>
+      <div class="skill-list">
+        <div class="skill-item"><span class="skill-name">Machine Learning</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%;background:var(--c5)"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Deep Learning</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%;background:var(--c5)"></div></div></div>
+        <div class="skill-item"><span class="skill-name">NLP</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%;background:var(--c5)"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Computer Vision</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:68%;background:var(--c5)"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title" style="color:var(--c3)">Python Libraries</div>
+      <div class="skill-list">
+        <div class="skill-item"><span class="skill-name">NumPy / Pandas</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;background:var(--c3)"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Scikit-learn</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%;background:var(--c3)"></div></div></div>
+        <div class="skill-item"><span class="skill-name">OpenCV</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%;background:var(--c3)"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Matplotlib</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%;background:var(--c3)"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title" style="color:var(--c2)">Tools & Platforms</div>
+      <div class="skill-list">
+        <div class="skill-item"><span class="skill-name">Power BI</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%;background:var(--c2)"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Jupyter Notebook</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;background:var(--c2)"></div></div></div>
+        <div class="skill-item"><span class="skill-name">VS Code</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%;background:var(--c2)"></div></div></div>
+        <div class="skill-item"><span class="skill-name">GitHub</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:74%;background:var(--c2)"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-glow"></div>
+    <div class="contact-badge">Available for full-time roles & internships</div>
+    <h2 class="contact-title">Let's connect!</h2>
+    <p class="contact-sub">I'm actively looking for opportunities in AI, ML, and Data Science. If you think I'd be a good fit for your team, I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:praveenop18@gmail.com" class="contact-link">✉️ Email me</a>
+      <a href="https://www.linkedin.com/in/praveencm/" class="contact-link">💼 LinkedIn</a>
+      <a href="https://github.com/" class="contact-link">🐙 GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Praveen C · B.Tech AIML</span>
+</footer>
+
+
+ 
